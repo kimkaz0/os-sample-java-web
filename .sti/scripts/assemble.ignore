@@ -1,5 +1,7 @@
 #!/bin/bash 
 
+echo -n "Start assemble script..."
+
 # restore maven dependencies downloaded in a previous build,
 # so they do not have to be downloaded again.  
 # /tmp/artifacts will only be present in the incremental build scenario
