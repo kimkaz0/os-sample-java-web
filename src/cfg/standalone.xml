@@ -139,13 +139,21 @@
                         <password>sa</password>
                     </security>
                 </datasource>
-				<datasource jndi-name="java:jboss/datasources/${env.OPENSHIFT_MYSQL_DATASOURCE}" enabled="${mysql.enabled}" use-java-context="true" pool-name="${env.OPENSHIFT_MYSQL_DATASOURCE}" use-ccm="true">
+		<datasource jndi-name="java:jboss/datasources/${env.OPENSHIFT_MYSQL_DATASOURCE}" enabled="true" use-java-context="true" pool-name="${env.OPENSHIFT_MYSQL_DATASOURCE}" statistics-enabled="true" use-ccm="true">
                     <connection-url>jdbc:mysql://${env.OPENSHIFT_MYSQL_DB_HOST}:${env.OPENSHIFT_MYSQL_DB_PORT}/${env.OPENSHIFT_MYSQL_DB_NAME}</connection-url>
                     <driver>mysql</driver>
                     <security>
                       <user-name>${env.OPENSHIFT_MYSQL_DB_USERNAME}</user-name>
                       <password>${env.OPENSHIFT_MYSQL_DB_PASSWORD}</password>
                     </security>
+                    <pool>
+                      <min-pool-size>10</min-pool-size>
+                      <max-pool-size>50</max-pool-size>
+                    </pool>
+                    <statement>
+                      <prepared-statement-cache-size>32</prepared-statement-cache-size>
+                      <share-prepared-statements>true</share-prepared-statements>
+                    </statement>
                     <validation>
                         <check-valid-connection-sql>SELECT 1</check-valid-connection-sql>
                         <background-validation>true</background-validation>
