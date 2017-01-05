@@ -1,12 +1,11 @@
 #!/bin/bash 
-#echo "Before running application"
-#exec /usr/libexec/s2i/run
 #################################
-CMD_ADDUSER=/wildfly/bin/add-user.sh
-#################################
-echo "adding management user" 
-${CMD_ADDUSER} -u ${OPENSHIFT_WILDFLY_MGMT_USERNAME} -p ${OPENSHIFT_WILDFLY_MGMT_PASSWORD} -s -e
+if [ "${OPENSHIFT_WILDFLY_MGMT_USERNAME}" != "" || "${OPENSHIFT_WILDFLY_MGMT_PASSWORD}" != "" ]; then
+  echo "adding management user" 
+  /wildfly/bin/add-user.sh -u ${OPENSHIFT_WILDFLY_MGMT_USERNAME} -p ${OPENSHIFT_WILDFLY_MGMT_PASSWORD} -s -e
+fi
 
-echo "exec standalone.sh" 
+#################################
+echo "exec standalone.sh"
 exec /wildfly/bin/standalone.sh -b 0.0.0.0 -Djboss.bind.address.management=0.0.0.0
 #################################
