@@ -1,6 +1,6 @@
 #!/bin/bash 
 #################################
-if ( [ "$OPENSHIFT_WILDFLY_MGMT_USERNAME" != "" ] || [ "$OPENSHIFT_WILDFLY_MGMT_PASSWORD" != "" ] ); then
+if ( [ "$OPENSHIFT_WILDFLY_MGMT_USERNAME" != "" ] && [ "$OPENSHIFT_WILDFLY_MGMT_PASSWORD" != "" ] ); then
   echo "adding management user" 
   /wildfly/bin/add-user.sh -u ${OPENSHIFT_WILDFLY_MGMT_USERNAME} -p ${OPENSHIFT_WILDFLY_MGMT_PASSWORD} -s -e
 fi
