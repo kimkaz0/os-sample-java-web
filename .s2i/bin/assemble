@@ -1,13 +1,15 @@
 #!/bin/bash 
 echo "Before assembling"
 
+echo "exec assemble"
 /usr/libexec/s2i/assemble
 rc=$?
 
 if [ $rc -eq 0 ]; then
-    echo "After successful assembling"
+    echo "successful assembling"
+    echo $HOME
 else
-    echo "After failed assembling"
+    echo "failed assembling"
 fi
 
 exit $rc
