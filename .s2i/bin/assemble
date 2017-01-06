@@ -8,6 +8,14 @@ rc=$?
 if [ $rc -eq 0 ]; then
     echo "successful assembling"
     echo $HOME
+
+    if [ -d $HOME/wildfly ]; then
+      echo "Overwrite wildfly configurationt..."
+      cp wildfly/standalone.conf /wildfly/bin
+      chgrp 0 /wildfly/bin/standalone.conf
+      chmod -R g+rw /wildfly/bin/standalone.conf
+    fi
+
 else
     echo "failed assembling"
 fi
