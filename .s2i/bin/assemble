@@ -7,13 +7,18 @@ rc=$?
 
 if [ $rc -eq 0 ]; then
     echo "successful assembling"
-    echo $HOME
 
-    if [ -d $HOME/wildfly ]; then
-      echo "Overwrite wildfly configurationt..."
+    if [ -e $HOME/wildfly/standalone.conf ]; then
+      echo "Overwrite standalone.conf"
       cp wildfly/standalone.conf /wildfly/bin
       chgrp 0 /wildfly/bin/standalone.conf
       chmod -R g+rw /wildfly/bin/standalone.conf
+    fi
+    if [ -e $HOME/wildfly/standalone-full.xml ]; then
+      echo "Overwrite standalone-full.xml"
+      cp wildfly/standalone-full.xml /wildfly/standalone/configuration 
+      chgrp 0 /wildfly/standalone/configuration/standalone-full.xml 
+      chmod -R g+rw /wildfly/standalone/configuration/standalone.xml
     fi
 
 else
