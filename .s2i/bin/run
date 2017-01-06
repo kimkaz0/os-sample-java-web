@@ -7,5 +7,5 @@ fi
 
 #################################
 echo "exec standalone.sh"
-exec /wildfly/bin/standalone.sh -b 0.0.0.0 -Djboss.bind.address.management=0.0.0.0
+exec /wildfly/bin/standalone.sh -c standalone-full.xml -b 0.0.0.0 -Djboss.bind.address.management=0.0.0.0
 #################################
